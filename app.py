@@ -140,14 +140,21 @@ class InfoCompanySearchHandler(BaseHandler):
     @tornado.web.authenticated
     def post(self):
         search_text = self.get_argument("search_text")
-        company = search_company(search_text)[0]
-        feeds = get_company_info_feed(TIME_LIMIT, company.id)
-        oversea_feeds = get_oversea_info_feed(TIME_LIMIT)
-        total_page = len(feeds) // ITEMS_NUM_PERPAGE + 1
-        page_num = 1
-        start = ITEMS_NUM_PERPAGE * (page_num - 1)
-        end = ITEMS_NUM_PERPAGE * page_num
-        feeds = feeds[start:end]
+        company = search_company(search_text)
+        if company:
+            company = company[0]
+            feeds = get_company_info_feed(TIME_LIMIT, company.id)
+            oversea_feeds = get_oversea_info_feed(TIME_LIMIT)
+            total_page = len(feeds) // ITEMS_NUM_PERPAGE + 1
+            page_num = 1
+            start = ITEMS_NUM_PERPAGE * (page_num - 1)
+            end = ITEMS_NUM_PERPAGE * page_num
+            feeds = feeds[start:end]
+        else:
+            feeds = []
+            oversea_feeds = []
+            total_page = 1
+            page_num = 1
         self.render("information_filted.html", feeds=feeds, oversea_feeds=oversea_feeds, total_page=total_page, current_page=page_num)
 
 
@@ -158,13 +165,19 @@ class OverseaCompanySearchHandler(BaseHandler):
     @tornado.web.authenticated
     def post(self):
         search_text = self.get_argument("search_text")
-        company = search_company(search_text)[0]
-        feeds = get_oversea_company_info_feed(TIME_LIMIT, company.id)
-        total_page = len(feeds) // ITEMS_NUM_PERPAGE + 1
-        page_num = 1
-        start = ITEMS_NUM_PERPAGE * (page_num - 1)
-        end = ITEMS_NUM_PERPAGE * page_num
-        feeds = feeds[start:end]
+        company = search_company(search_text)
+        if company:
+            company = company[0]
+            feeds = get_oversea_company_info_feed(TIME_LIMIT, company.id)
+            total_page = len(feeds) // ITEMS_NUM_PERPAGE + 1
+            page_num = 1
+            start = ITEMS_NUM_PERPAGE * (page_num - 1)
+            end = ITEMS_NUM_PERPAGE * page_num
+            feeds = feeds[start:end]
+        else:
+            feeds = []
+            total_page = 1
+            page_num = 1
         self.render("oversea_info_filted.html", feeds=feeds, total_page=total_page, current_page=page_num)
 
 

@@ -27,8 +27,8 @@ Base.query = DBSession.query_property()
 Base = declarative_base()
 
 def init_db(db_engine):
-  # Base.metadata.create_all(bind=db_engine)
-  Base.metadata.tables["log"].create(bind=db_engine)
+  Base.metadata.create_all(bind=db_engine)
+  # Base.metadata.tables["log"].create(bind=db_engine)
 
 
 class User(Base):
