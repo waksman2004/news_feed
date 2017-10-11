@@ -27,7 +27,7 @@ pip install -r requirements.txt
 
 连接MySQL，执行
 ```
-mysql> create database alpha_z default charset utf8;
+mysql> create database news_feed default charset utf8;
 ```
 
 创建表
@@ -42,7 +42,7 @@ python app.py
 浏览器打开
 http://127.0.0.1:8888/
 
-![news feed](http://oiip5z89k.bkt.clouddn.com/WechatIMG1.jpeg)
+![news feed](http://oiip5z89k.bkt.clouddn.com/WechatIMG8.jpeg)
 
 
 1. 用户
@@ -54,7 +54,7 @@ http://127.0.0.1:8888/register
 * 用户订阅
 订阅用户能定期收到邮件推送
 http://127.0.0.1:8888/subscription
-![news feed](http://oiip5z89k.bkt.clouddn.com/WechatIMG2.jpeg)
+![subscription](http://oiip5z89k.bkt.clouddn.com/WechatIMG2.jpeg)
 
 
 2. 公司、站点管理
@@ -66,13 +66,13 @@ http://127.0.0.1:8888/subscription
 cd utils/ ; python xlsx_reader.py
 ```
 
-![news feed](http://oiip5z89k.bkt.clouddn.com/WechatIMG4.jpeg)
-![news feed](http://oiip5z89k.bkt.clouddn.com/WechatIMG5.jpeg)
+![company list](http://oiip5z89k.bkt.clouddn.com/WechatIMG7.jpeg)
+![company profile](http://oiip5z89k.bkt.clouddn.com/WechatIMG9.jpeg)
 
 
 3. 抓取日志
 http://127.0.0.1:8888/log
-![news feed](http://oiip5z89k.bkt.clouddn.com/WechatIMG6.jpeg)
+![crawler log](http://oiip5z89k.bkt.clouddn.com/WechatIMG6.jpeg)
 
 
 4. 信息流
